@@ -15,7 +15,7 @@ Projeto arduino que conectar a redes wi-fi e carrega um API Rest para receber co
 ## Montagem
 
 ## Executando a aplicação Rest API
-Ao gravar o firmware na Wemos D1 será possível receber os logs através do monitor serial do Arduino IDE, onde serão será possível verificar os logs do processo de conexão com a rede wireless configurada hardcoded. Para isso, será necessário manter a placa conectada à porta usb, utilizada para fazer a gravação do firmware. Ao final da inicialização, se as configurações de rede estiverem corretas, a saída no monitor serial do Arduino IDE será semelhando a seguinte
+Ao ligar a placa será possível receber os logs através do monitor serial do Arduino IDE, onde serão será possível verificar os logs do processo de conexão com a rede wireless configurada hardcoded. Para isso, será necessário manter a placa conectada à porta usb, utilizada para fazer a gravação do firmware. Ao final da inicialização, se as configurações de rede estiverem corretas, a saída no monitor serial do Arduino IDE será semelhando a seguinte
 
 ```
 Connecting to WiFi AP..........
@@ -27,6 +27,10 @@ Com esta informação já sabemos onde podemos enviar os comandos para controlar
 
 ## Consumindo a API
 Nossa API tem apenas dois endpoints. O raiz retorna simplesmente um texto de saudação da API que é para mostrar o quando o nosso firmware é simpático.
+
+```
+Welcome to the ESP8266 REST Web Server
+```
 
 **Enviando Post para alterar cor dos leds**
 
