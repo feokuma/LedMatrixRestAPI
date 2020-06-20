@@ -5,6 +5,7 @@ Projeto arduino que conectar a redes wi-fi e carrega um API Rest para receber co
 - Arduino IDE ([arduino.cc](https://www.arduino.cc))
 - Bibliotecas da placa Wemos D1 ([Tutorial para instalação](https://blogmasterwalkershop.com.br/embarcados/wemos/wemos-d1-configurando-a-ide-do-arduino/))
 - Biblioteca para controle de leds RGB FastLED ([fastled.io](https://fastled.io))
+- Biblioteca ArduinoJson versão 5 (tem que ser essa versão) ([arduinojson.org](https://arduinojson.org/v5/doc/installation))
 - Postman ([postman.com](https://www.postman.com/))
 
 ## Hardware
@@ -13,6 +14,12 @@ Projeto arduino que conectar a redes wi-fi e carrega um API Rest para receber co
 - Conversor de Nível Lógico 3,3V para 5V ([Conversor Step Up](https://www.filipeflop.com/produto/conversor-de-nivel-logico-33-5v-bidirecional/))
 
 ## Montagem
+O hardware é basicamente constituído de 3 placas, sendo que uma é um conversor step up, para garatir que a saída 3v3 da Wemos não terá problema em pilotar a entrada de sinal 5V do WS2812b. 
+
+![Esquema de montagem do circuito](images/WemosWs2812b.png)
+
+As legenda feiosa indica, pelas cores, qual sua função no circuito. 
+Para os testes utilizei uma fonte de celular alimentando pelo conector USB mas dependendo da quantidade de leds que pretende utilizar recomendo usar uma fonte DC ligado na entrada P4 da Wemos. 
 
 ## Executando a aplicação Rest API
 Ao ligar a placa será possível receber os logs através do monitor serial do Arduino IDE, onde serão será possível verificar os logs do processo de conexão com a rede wireless configurada hardcoded. Para isso, será necessário manter a placa conectada à porta usb, utilizada para fazer a gravação do firmware. Ao final da inicialização, se as configurações de rede estiverem corretas, a saída no monitor serial do Arduino IDE será semelhando a seguinte
@@ -64,4 +71,4 @@ Content-Length: 30
 Connection: close
 
 {"numLeds":16,"status":"1"}
-```
+```
