@@ -21,8 +21,8 @@ struct Led
     byte status;
 } led_resource;
 
-const char *wifi_ssid = "OKUMA_TPLINK_2G";
-const char *wifi_passwd = "15041955";
+const char *wifi_ssid = "[wifi_ssid]";
+const char *wifi_passwd = "[wifi_passwd]";
 
 ESP8266WebServer http_rest_server(HTTP_REST_PORT);
 
