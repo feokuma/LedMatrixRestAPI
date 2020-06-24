@@ -21,8 +21,8 @@ struct Led
     byte status;
 } led_resource;
 
-const char *wifi_ssid = "[WIFI_SSID]";
-const char *wifi_passwd = "[WIFI_PASSWD]";
+const char *wifi_ssid = "OKUMA_TPLINK_2G";
+const char *wifi_passwd = "15041955";
 
 ESP8266WebServer http_rest_server(HTTP_REST_PORT);
 
@@ -113,13 +113,13 @@ void setFastLED(byte led)
     switch (led)
     {
         case 1:
-            color = CRGB::Green;
+            color = 0x040000;//CRGB::Green;
             break;
         case 2:
-            color = CRGB::Red;
+            color = 0x000400;//CRGB::Red;
             break;
         case 3:
-            color = CRGB::Orange;
+            color = 0x040400;//CRGB::Orange;
             break;
         default:
             color = CRGB::Black;
