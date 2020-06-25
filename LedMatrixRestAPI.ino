@@ -6,7 +6,7 @@
 #include <ESP8266WebServer.h>
 #include <ArduinoJson.h>
 
-#define NUM_LEDS 12
+#define NUM_LEDS 64
 #define DATA_PIN 13
 
 CRGB leds[NUM_LEDS];
@@ -106,29 +106,115 @@ void post_leds()
     }
 }
 
-void setFastLED(byte led)
+void setFastLED(byte status)
 {
-    CRGB color;
-
-    switch (led)
+    switch (status)
     {
         case 1:
-            color = 0x040000;//CRGB::Green;
+            draw_avaliable();
             break;
         case 2:
-            color = 0x000400;//CRGB::Red;
+            draw_busy();
             break;
         case 3:
-            color = 0x040400;//CRGB::Orange;
+            draw_doNotDisturb();
+            break;
+        case 4:
+            draw_away();
             break;
         default:
-            color = CRGB::Black;
+            clean();
             break;
     }
+}
 
-    for(char i = 0; i < led_resource.numLeds; i++)
-        leds[i] = color;
+void clean(){
+    for(char index = 0; index < NUM_LEDS; index++)
+        leds[index] = CRGB::Black;
+    FastLED.show();
+}
 
+void draw_avaliable(){
+    char avaliable[] = {0x3c,0x7e,0xfb,0xf7,0xaf,0xdf,0x7e,0x3c};
+    int avaliable_color = 0x0A0000;
+    char count = 0;
+    char mask = 0x80;
+    
+    for (char line = 0; line < 8; line++)
+    {
+        mask = 0x80;
+        for (char column = 0; column < 8; column++)
+        {
+            if (avaliable[line] & mask)
+                leds[count++] = avaliable_color;
+            else
+                leds[count++] = 0;
+            mask >>= 1;
+        }
+    }
+    FastLED.show();
+}
+
+void draw_doNotDisturb(){
+    char busy[] = {0x3c,0x7e,0xff,0x81,0x81,0xff,0x7e,0x3c};
+    int busy_color = 0x000C00;
+    char count = 0;
+    char mask = 0x80;
+    
+    for (char line = 0; line < 8; line++)
+    {
+        mask = 0x80;
+        for (char column = 0; column < 8; column++)
+        {
+            if (busy[line] & mask)
+                leds[count++] = busy_color;
+            else
+                leds[count++] = 0;
+            mask >>= 1;
+        }
+    }
+    FastLED.show();
+}
+
+void draw_busy(){
+    char busy[] = {0x3c,0x7e,0xff,0xff,0xff,0xff,0x7e,0x3c};
+    int busy_color = 0x000C00;
+    char count = 0;
+    char mask = 0x80;
+    
+    for (char line = 0; line < 8; line++)
+    {
+        mask = 0x80;
+        for (char column = 0; column < 8; column++)
+        {
+            if (busy[line] & mask)
+                leds[count++] = busy_color;
+            else
+                leds[count++] = 0;
+            mask >>= 1;
+        }
+    }
+    FastLED.show();
+}
+
+void draw_away(){
+    char away[] = {0x3c,0x6e,0xef,0xef,0xef,0xf7,0x7e,0x3c};
+    int away_color = 0x0A0C00;
+    char count = 0;
+    char mask = 0x80;
+    
+    for (char line = 0; line < 8; line++)
+    {
+        mask = 0x80;
+        for (char column = 0; column < 8; column++)
+        {
+            if (away[line] & mask)
+                leds[count++] = away_color;
+            else
+                leds[count++] = 0;
+            mask >>= 1;
+        }
+    }
     FastLED.show();
 }
 
